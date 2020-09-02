@@ -14,7 +14,7 @@ $adapter = $wkspIP.InterfaceAlias
 
 start-sleep -Seconds 20
 
-Remove-NetIPAddress -InterfaceAlias $wkspIP.InterfaceAlias -Confirm:$false
+Remove-NetIPAddress -InterfaceAlias $adapter -Confirm:$false
 
 $wkspIP.IPv4Address.IPAddress
 $wkspIP.IPv4DefaultGateway.nexthop
