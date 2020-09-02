@@ -1,10 +1,16 @@
-﻿
+﻿#Ben Brouhard
+ #set and DHCP address to Static
+
+$profilename = "SEC.UNJSPF.ORG"
 
 
-$wkspIP =  Get-NetIPConfiguration |where {$_.netProfile.name -eq "SEC.UNJSPF.ORG"}
 
+
+#get Current IP address
+$wkspIP =  Get-NetIPConfiguration |where {$_.netProfile.name -eq $profilename}
+$wkspIP
 $adapter = $wkspIP.InterfaceAlias
-Get-NetIPConfiguration |where {$_.netProfile.name -eq "SEC.UNJSPF.ORG"}
+
 #Disable-NetAdapter -Name $adapter -Confirm:$false
 
 #enable-NetAdapter -Name $adapter -Confirm:$false
