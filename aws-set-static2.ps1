@@ -26,7 +26,7 @@ $max =5
    Write-host "attempting to reset $adaptername `n Attempt: $loop of $max"
     if ($loop -gt $max){ Write-Error "Network adpater can not get a valid IP. quiting" -ErrorAction Stop }
 
-    Write-host -ForegroundColor Yellow "....Disable $adaptername"
+    Write-host -ForegroundColor Yellow "..Disable $adaptername"
     Disable-NetAdapter -Name $adaptername -Confirm:$false
     sleep 5
     write-host -ForegroundColor Yellow "...Enable $adaptername"
@@ -34,7 +34,7 @@ $max =5
     write-host "Waiting for adapter to start"
     start-sleep -Seconds 45
   
-    write-host "Checking IP"
+    write-host -foregroundcolor Green "....Checking IP"
     $wkspIP =  Get-NetIPConfiguration |where {$_.netProfile.name -eq $profilename }
      Get-NetIPConfiguration |where {$_.netProfile.name -eq $profilename }
     $wkspIP
@@ -59,12 +59,8 @@ write-host -foregroundcolor DarkCyan "
             
 
 if ($newIP -notlike "169.*"){
-$adapter | New-NetIPAddress `
- -AddressFamily "IPv4" `
- -IPAddress $wkspIP.IPv4Address.IPAddress `
- -PrefixLength "24" `
- -DefaultGateway $wkspIP.IPv4DefaultGateway.nexthop
- }
+$adapter | New-NetIPAddress -AddressFamily "IPv4"  -IPAddress $wkspIP.IPv4Address.IPAddress  -PrefixLength "24"  -DefaultGateway $wkspIP.IPv4DefaultGateway.nexthop 
+}
 
  #Get-NetIPConfiguration -InterfaceAlias $adaptername
  sleep 5
