@@ -1,7 +1,7 @@
 ﻿#Ben Brouhard
  #set and DHCP address to Static
 
-$profilename = "SEC.UNJSPF.ORG"
+$profilename = ""
 
 #get Current IP address
 $wkspIP =  Get-NetIPConfiguration |where {$_.netProfile.name -eq $profilename}

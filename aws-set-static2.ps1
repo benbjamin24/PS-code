@@ -1,7 +1,7 @@
 ﻿#Ben Brouhard
 # script to set workspaces IP to static
 
-$profilename = "SEC.UNJSPF.ORG"
+$profilename = ""
 
 do{
 $wkspIP =  Get-NetIPConfiguration |where {$_.netProfile.name -eq $profilename }
