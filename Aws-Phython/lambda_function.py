@@ -1,3 +1,6 @@
+##  Ben Brouhard
+#Script to check sandbox and shutdown all EC2 and Send email. 
+
 import json
 import boto3
 ec2 = boto3.resource('ec2')
@@ -22,7 +25,7 @@ for instance in instances:
     print("checking:",instance.id, instance.instance_type)
     print("\nstopping ", instanceid)
     #print(instanceid )
-    ec2.instances.filter(InstanceIds=[instanceid]).stop()
+    #ec2.instances.filter(InstanceIds=[instanceid]).stop()
     #stoppedvms.append(instanceid)
     vmcount +=1
 
@@ -65,8 +68,8 @@ if vmcount >= 1:
                 'Data': Subject_Email,
             },
         },
-        Source='brouhard@un.org',
-    #     SourceArn='arn:aws:ses:us-east-1:391895119776:identity/brouhard@un.org',
+        Source=EmailAddress,
+    
     )
 
 print(vmcount)
